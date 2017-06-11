@@ -4,12 +4,12 @@ var http = require('http');
 var request = require('request');
 var router = express.Router();
 
-var connection = mysql.createConnection({
+var db_config = {
     host: 'us-cdbr-iron-east-03.cleardb.net',
     user: 'b01bbb2737cdec',
     password: '6f56489d',
     database: 'heroku_f5b419f4259a71b'
-});
+};
 
 
 router.post('/sql', function (req, res) {
@@ -37,6 +37,28 @@ router.post('/sql', function (req, res) {
                 
     }
 });
+
+var connection;
+
+function handleDisconnect() {
+  connection = mysql.createConnection(db_config); 
+  connection.connect(function(err) {              
+    if(err) {                                
+      console.log('error when connecting to db:', err);
+      setTimeout(handleDisconnect, 2000);
+    }
+  });             
+  connection.on('error', function(err) {
+    console.log('db error', err);
+    if(err.code === 'PROTOCOL_CONNECTION_LOST') {
+      handleDisconnect();
+    } else {
+      throw err;
+    }
+  });
+}
+
+handleDisconnect();
 
 
 module.exports = router;
