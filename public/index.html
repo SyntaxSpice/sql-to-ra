@@ -11,10 +11,17 @@
 </head>
 
 <body>
+    <div id="tableExample" ng-controller="exampleCtrl">
+        <div ng-repeat="table in tableExample">
+            <div class="br">
+                <div class="tr" ng-repeat="elem in table.arr">{{elem}}</div>
+            </div>
+        </div>
+    </div>
     <div id="app" ng-controller="mainCtrl">
         <textarea type="text" ng-model="rAData" id="sql" placeholder="SQL"></textarea>
-        <div id="result">{{sqlRusult}}</div>
-        <table ng-show="(table)">
+        <div id="result"></div>
+        <table ng-show="(table)" id="resultTable">
             <tr>
                 <td ng-repeat="cn in cnames">{{cn}}</td>
             </tr>

@@ -20,7 +20,7 @@ let conformity = {
     "inner": "⋈",
     "left": "⟕",
     "right": "⟖",
-    join: "",
+    "join": "",
     "as": "ρ",
     "*": "*",
     "(": "(",
@@ -35,9 +35,11 @@ let tables = ["r", "t", "s"];
 
 
 let arr;
+let resultStr = "";
 
 function parseString(val) {
     arr = [];
+    resultStr = "";
         
     splitStirng(val);
     changeOperators();
@@ -55,7 +57,13 @@ function parseString(val) {
 //    removeColumns();
     removeSameAs();
     
+//    removeColumns();
+    returnUpperCase();
+//    subColumnNames();
+    concatStr();
+    
     console.log(arr);
+    return resultStr;
 }
 
 function splitStirng(str) {
@@ -195,6 +203,44 @@ function removeColumns() {
             if(arr[i] == columns[j]){
                 arr.splice(i, 1);
             }
+        }
+    }
+}
+
+function concatStr() {
+    for(let i = 0; i <arr.length; i++){
+        resultStr+= `${arr[i]} `;
+    }
+}
+
+function subColumnNames() {
+    for(let i = 0; i < arr.length; i++){
+        let item = arr[i];
+        let cName;
+        let columnNameExist = false;
+        let index;
+        for(let j = 0; j < columns.length; j++){
+            index = item.indexOf(` ${columns[j]}`);
+            if(~index || item == columns[j]){
+                columnNameExist = true;
+                cName = columns[j];
+            }
+            if(item == columns[j]) index = 0;
+        }
+        if(columnNameExist){
+            let fOld = item.substr(0,index);
+            let lOld = item.substr(index+2, item.length);
+            let newStr = `${fOld}<sub>${cName}</sub>${lOld}`;
+            arr[i] = newStr;
+        }
+        
+    }
+}
+
+function returnUpperCase() {
+    for(let i = 0; i<arr.length; i++){
+        if(~tables.indexOf(arr[i])){
+            arr[i] = arr[i].toUpperCase();
         }
     }
 }
