@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sqlParser">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Relational Algebra - SQL</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/angular.min.js"></script>
+<!--    <script src="./js/dictionary.js"></script>-->
+    <script src="./js/calculator.js"></script>
+</head>
+
+<body>
+    <div id="app" ng-controller="mainCtrl">
+        <textarea type="text" ng-model="rAData" id="sql" placeholder="SQL"></textarea>
+        <div id="result">{{sqlRusult}}</div>
+        <input type="submit" ng-click="parseRA($event)" id="submit" value="Translate">
+    </div>
+</body>
+<script src="./js/app.js"></script>
+
+</html>
