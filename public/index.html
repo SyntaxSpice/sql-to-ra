@@ -6,7 +6,7 @@
     <title>Relational Algebra - SQL</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/angular.min.js"></script>
-<!--    <script src="./js/dictionary.js"></script>-->
+    <!--    <script src="./js/dictionary.js"></script>-->
     <script src="./js/calculator.js"></script>
 </head>
 
@@ -14,6 +14,16 @@
     <div id="app" ng-controller="mainCtrl">
         <textarea type="text" ng-model="rAData" id="sql" placeholder="SQL"></textarea>
         <div id="result">{{sqlRusult}}</div>
+        <table ng-show="(table)">
+            <tr>
+                <td ng-repeat="cn in cnames">{{cn}}</td>
+            </tr>
+            <tr ng-repeat="row in table">
+                <td ng-show="(row.a)">{{row.a}}</td>
+                <td ng-show="(row.b)">{{row.b}}</td>
+                <td ng-show="(row.c)">{{row.c}}</td>
+            </tr>
+        </table>
         <input type="submit" ng-click="parseRA($event)" id="submit" value="Translate">
     </div>
 </body>

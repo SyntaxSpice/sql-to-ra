@@ -1,12 +1,13 @@
-html, body{
+html,
+body {
     height: 100%;
     min-height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #1f1f1f;   
+    background-color: #1f1f1f;
 }
 
-#app{
+#app {
     position: relative;
     text-align: center;
     top: 10%;
@@ -14,11 +15,11 @@ html, body{
     margin: auto;
 }
 
-#sql{
+#sql {
     width: 96%;
     height: 200px;
     background-color: #1f1f1f;
-    box-shadow:  inset 0 0 5px 1px black;
+    box-shadow: inset 0 0 5px 1px black;
     border: 0px;
     color: white;
     padding: 2%;
@@ -26,19 +27,19 @@ html, body{
     resize: none;
 }
 
-#result{
+#result {
     position: relative;
     margin: auto;
     width: 96%;
     height: 100px;
     background-color: #1f1f1f;
-    box-shadow:  inset 0 0 5px 1px black;
+    box-shadow: inset 0 0 5px 1px black;
     border: 0px;
     color: #00a7ff;
     padding: 2%;
 }
 
-#submit{
+#submit {
     position: relative;
     top: 10px;
     width: 100%;
@@ -50,6 +51,23 @@ html, body{
     cursor: pointer;
 }
 
-#submit:hover{
+#submit:hover {
     color: #0093ff;
+}
+
+table {
+    position: relative;
+    margin: auto;
+    top: 10px;
+    width: 50%;
+    padding: 0;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    border: 1px solid white;
+    margin-bottom: 10px;
+}
+
+td,tr{
+    border: 1px solid white;
 }
