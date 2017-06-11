@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
     database: 'heroku_f5b419f4259a71b'
 });
 
-connection.connect();
+
 router.post('/sql', function (req, res) {
     console.log(req.body);
     let sqlReq = req.body.data.toLowerCase();
@@ -19,6 +19,7 @@ router.post('/sql', function (req, res) {
         res.send("Don't try change database!");
     } else {
         try {
+//            connection.connect();
             connection.query(req.body.data, function (err, rows, fields) {
                 if (!err) {
                     console.log('The solution is: ', rows);
@@ -28,11 +29,12 @@ router.post('/sql', function (req, res) {
                     console.log('Error while performing Query.');
                 }
             });
+//            connection.end();
         } catch (err) {
             res.send("Your request is incorrect!");
             console.log(err);
         }
-        //        connection.end();
+                
     }
 });
 
