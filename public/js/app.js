@@ -22,18 +22,36 @@
         $scope.parseRA = function ($event) {
             if ($scope.rAData) {
                 document.getElementById("result").innerHTML = parseString($scope.rAData);
-                $scope.submit();                
+                $scope.submit();
             }
         }
     });
 
     app.controller('exampleCtrl', function ($scope) {
         $scope.tableExample = [
-            {arr: ["R", "a int", "b string", "c string"]},
-            {arr:["S", "c string", "d int"]}
-        ]; 
- 
+            {
+                arr: ["R", "a int", "b string", "c string"]
+            },
+            {
+                arr: ["S", "c string", "d int"]
+            }
+        ];
+
     });
-    
-    
+
+    app.controller('title', function ($scope) {
+        $scope.visible = true;
+        $scope.showWorkSpace = function () {
+            animatedCameraMoveTo(cameraTo);
+            setTimeout(function () {
+                document.getElementById("sqlSpace").style.zIndex = 44;
+                document.getElementById("sqlSpace").style.opacity = 1;
+                document.getElementById("title").style.display = "none";
+                $scope.visible = false;
+            }, 1000);
+
+        };
+    });
+
+
 })(window.angular);
