@@ -39,7 +39,7 @@ setTimeout(function () {
     cameraTo.x = charO.position.x + charO.width / 2;
     cameraTo.y = charO.position.y + charO.height / 2;
     dropWords();
-}, 500);
+}, 1000);
 
 function animatedCameraMoveTo(toPos, toRot) {
     toRot = toRot || {
