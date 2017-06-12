@@ -38,6 +38,16 @@ function buildGui() {
         light.penumbra = val;
         render();
     }, false, 0, 1);
+    
+    addGui('first falling color',ffc, function (val) {
+        ffc = val;
+        render();
+    }, true);
+    
+    addGui('second falling color',sfc, function (val) {
+        sfc = val;
+        render();
+    }, true);
 }
 
 function addGui(name, value, callback, isColor, min, max) {

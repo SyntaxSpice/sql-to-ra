@@ -138,7 +138,8 @@ function moveWord(obj) {
     }, 20);
 }
 
-
+let ffc = 0xffffff;
+let sfc = 0xffffff;
 
 function dropWords() {
     let index = 0;
@@ -149,7 +150,9 @@ function dropWords() {
     let inter = setInterval(function () {
         randomX = Math.floor(Math.random() * (halfWidth+halfWidth+1)-halfWidth);
         randomZ = Math.floor(Math.random() * (200+200+1)-200);
-        let obj = createText(keywords[index], Math.random() * 0xffffff);
+//        let obj = createText(keywords[index], Math.random() * 0xffffff);
+        let color = index % 2 == 0 ? ffc : sfc;
+        let obj = createText(keywords[index],color);
         obj.position.x = randomX;
         obj.position.y = container.offsetHeight / 2;
         obj.position.z = randomZ;
