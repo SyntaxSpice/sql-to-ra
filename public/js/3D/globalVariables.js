@@ -8,21 +8,15 @@ var devModules = {
 };
 
 var controlsPositions = {
-    x: 0,
-    y: 0,
-    z: 0
+    x: 450,
+    y: 240,
+    z: 461
 };
 var cameraPositions = {
     x: 450,
     y: 240,
     z: 461
 }
-//var cameraPositions = {
-//    x: 366,
-//    y: 250,
-//    z: 546
-//}
-
 
 var container = document.getElementById('threeSpace');
 var canvas;

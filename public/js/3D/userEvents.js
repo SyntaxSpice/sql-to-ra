@@ -11,11 +11,11 @@ function onDocumentMouseDown(event) {
 }
 
 function onDocumentMouseMove(event) {
-	for (var func in mouseMoveFunctions) {
-		mouseMoveFunctions[func](event);
-	}
-
-	updateLightPosition();
+//	for (var func in mouseMoveFunctions) {
+//		mouseMoveFunctions[func](event);
+//	}
+//
+//	updateLightPosition();
 }
 
 function onDocumentMouseUp(event) {

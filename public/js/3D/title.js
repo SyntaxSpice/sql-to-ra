@@ -41,6 +41,7 @@ function initTitle() {
     cameraTo.x = charO.position.x + charO.width / 2;
     cameraTo.y = charO.position.y + charO.height / 2;
     dropWords();
+    buildGui();
     window.removeEventListener("fontLoaded", initTitle);
 }
 

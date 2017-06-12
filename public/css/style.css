@@ -149,3 +149,7 @@ tr {
     color: white;
 }
 
+.dg,.ac{
+    z-index: 10!important;
+}
+
