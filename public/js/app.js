@@ -40,17 +40,19 @@
     });
 
     app.controller('title', function ($scope) {
-        $scope.visible = true;
         $scope.showWorkSpace = function () {
             animatedCameraMoveTo(cameraTo);
-            setTimeout(function () {
-                document.getElementById("sqlSpace").style.zIndex = 44;
-                document.getElementById("sqlSpace").style.opacity = 1;
-                document.getElementById("title").style.display = "none";
-                $scope.visible = false;
-            }, 1000);
+        }
 
-        };
+        window.addEventListener("titleAnimated", showSqlSpace);
+
+        function showSqlSpace() {
+            document.getElementById("sqlSpace").style.zIndex = 44;
+            document.getElementById("sqlSpace").style.opacity = 1;
+            document.getElementById("title").style.display = "none";
+
+            window.removeEventListener("titleAnimated", showSqlSpace);
+        }
     });
 
 

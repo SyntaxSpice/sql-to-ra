@@ -35,15 +35,14 @@ function arrayTo3DText(arr) {
 
 window.addEventListener("fontLoaded", initTitle);
 
-//setTimeout(function () {
-    function initTitle() {
-        title3DText = arrayTo3DText(titleText);
-        charO = title3DText.children[1];
-        cameraTo.x = charO.position.x + charO.width / 2;
-        cameraTo.y = charO.position.y + charO.height / 2;
-        dropWords();
-    }
-//}, 1000);
+function initTitle() {
+    title3DText = arrayTo3DText(titleText);
+    charO = title3DText.children[1];
+    cameraTo.x = charO.position.x + charO.width / 2;
+    cameraTo.y = charO.position.y + charO.height / 2;
+    dropWords();
+    window.removeEventListener("fontLoaded", initTitle);
+}
 
 function animatedCameraMoveTo(toPos, toRot) {
     toRot = toRot || {
@@ -95,6 +94,8 @@ function animatedCameraMoveTo(toPos, toRot) {
 
         if (stepIndex == steps) {
             clearInterval(inter);
+            var event = new Event("titleAnimated");
+            window.dispatchEvent(event);
         }
     }, 20);
 }
