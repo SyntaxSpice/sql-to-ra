@@ -55,15 +55,20 @@ function buildGui() {
         render();
     }, true);
     
-    addGui('BG color', scene.fog.color.getHex(), function (val) {
+    addGui('BG color', rendererColor, function (val) {
         renderer.setClearColor(val);
         render();
     }, true);
     
-    addGui('Fog color', rendererColor, function (val) {
+    addGui('Fog color', scene.fog.color.getHex(), function (val) {
         scene.fog.color.setHex(val);
         render();
     }, true);
+    
+    addGui('Fog density', scene.fog.density, function (val) {
+        scene.fog.density = val;
+        render();
+    }, false, -0.005, 0.005);
     
     
 
