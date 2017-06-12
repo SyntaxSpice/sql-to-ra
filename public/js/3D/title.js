@@ -33,13 +33,17 @@ function arrayTo3DText(arr) {
     return group;
 }
 
-setTimeout(function () {
-    title3DText = arrayTo3DText(titleText);
-    charO = title3DText.children[1];
-    cameraTo.x = charO.position.x + charO.width / 2;
-    cameraTo.y = charO.position.y + charO.height / 2;
-    dropWords();
-}, 1000);
+window.addEventListener("fontLoaded", initTitle);
+
+//setTimeout(function () {
+    function initTitle() {
+        title3DText = arrayTo3DText(titleText);
+        charO = title3DText.children[1];
+        cameraTo.x = charO.position.x + charO.width / 2;
+        cameraTo.y = charO.position.y + charO.height / 2;
+        dropWords();
+    }
+//}, 1000);
 
 function animatedCameraMoveTo(toPos, toRot) {
     toRot = toRot || {

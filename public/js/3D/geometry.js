@@ -50,5 +50,7 @@ function createText(text, color=0x212121, size=15, height=3) {
 	var loader = new THREE.FontLoader(); 
 	loader.load('../js/3D/font/helvetiker_bold.typeface.json', function (newFont) {
 		font = newFont;
+        var event = new Event("fontLoaded");
+        window.dispatchEvent(event);
 	});
 })();
