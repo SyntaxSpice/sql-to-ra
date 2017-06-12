@@ -23,3 +23,4 @@ var canvas;
 var wAngle = 0;
 
 let wordGroup;
+let rendererColor = 0xffffff;

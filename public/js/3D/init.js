@@ -22,7 +22,7 @@ function init() {
 		preserveDrawingBuffer: true
 	});
 	renderer.setSize(container.offsetWidth, container.offsetHeight);
-	renderer.setClearColor(0xffffff);
+	renderer.setClearColor(rendererColor);
 //	renderer.setClearColor(0x000000);
 	renderer.shadowMapEnabled = true;
 	container.appendChild(renderer.domElement);

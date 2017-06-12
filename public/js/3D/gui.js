@@ -55,8 +55,18 @@ function buildGui() {
         render();
     }, true);
     
+    addGui('BG color', scene.fog.color.getHex(), function (val) {
+        renderer.setClearColor(val);
+        render();
+    }, true);
+    
+    addGui('Fog color', rendererColor, function (val) {
+        scene.fog.color.setHex(val);
+        render();
+    }, true);
     
     
+
 }
 
 function addGui(name, value, callback, isColor, min, max) {
