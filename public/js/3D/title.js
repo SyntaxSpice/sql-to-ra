@@ -6,6 +6,9 @@ let cameraTo = {
 };
 
 function arrayTo3DText(arr) {
+    if(title3DText){
+        scene.remove(title3DText);
+    }
     let textWidth = 0;
     let pos;
     let group = new THREE.Group();

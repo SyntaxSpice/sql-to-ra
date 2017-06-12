@@ -8,7 +8,21 @@ function clearGui() {
     gui.open();
 }
 
+
+
 function buildGui() {
+    console.log("mainText:"+title3DText.children[0].material.color.getHex());
+console.log("speed:"+speed);
+console.log("leightColor:"+light.color.getHex());
+console.log("lightIntensity:"+light.intensity);
+console.log("lightAngle:"+light.angle);
+console.log("lightPenumbra:"+light.penumbra);
+console.log("ffc:"+ffc);
+console.log("ffc:"+ffc);
+console.log("mirrorColor:"+mirrorParams.mirror.material.uniforms.mirrorColor.value);
+console.log("bgColor:"+rendererColor);
+console.log("fogColor:"+scene.fog.color.getHex());
+console.log("fogDensity:"+scene.fog.density);
     clearGui();
     addGui('main text color', title3DText.children[0].material.color.getHex(), function (val) {
         for (let i = 0; i < title3DText.children.length; i++) {
