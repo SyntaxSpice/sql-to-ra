@@ -109,6 +109,7 @@ function createMirror() {
         textureWidth: window.innerWidth,
         textureHeight: window.innerHeight,
         color: 0x889999
+//        color: 0x7c7c7c
     });
     mirrorParams.mirrorMesh = new THREE.Mesh(new THREE.PlaneBufferGeometry(mirrorParams.width, mirrorParams.height), mirrorParams.mirror.material);
     mirrorParams.mirrorMesh.add(mirrorParams.mirror);
@@ -124,8 +125,10 @@ let mirrorParams = {
     height: container.offsetHeight
 };
 
+var speed = 2;
+
 function moveWord(obj) {
-    let step = 2;
+    let step = speed;
     let inter = setInterval(function () {
         obj.position.y -= step;
         if(obj.position.y < -container.offsetHeight /2 - 100){
@@ -134,6 +137,8 @@ function moveWord(obj) {
         }
     }, 20);
 }
+
+
 
 function dropWords() {
     let index = 0;
