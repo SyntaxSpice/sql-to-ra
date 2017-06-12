@@ -48,6 +48,15 @@ function buildGui() {
         sfc = val;
         render();
     }, true);
+    
+    let mc = mirrorParams.mirror.material.uniforms.mirrorColor.value;
+    addGui('mirror color', mc.getHex(), function (val) {
+        mc.setHex(val);
+        render();
+    }, true);
+    
+    
+    
 }
 
 function addGui(name, value, callback, isColor, min, max) {
