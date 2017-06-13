@@ -35,15 +35,23 @@ function createTable(text) {
     return table;
 }
 
-function createTree(objArr) {
-    let floors = [];
-    let group = new THREE.Group();
-    group.scale.x = 2;
-    group.scale.y = 2;
+let tree;
 
-    group.position.x = 150;
-    group.position.z = -200
-    scene.add(group);;
+function createTree(objArr) {
+    if(tree){
+        removeTree(tree);
+        tree = null;
+    }
+    
+    
+    let floors = [];
+    tree = new THREE.Group();
+    tree.scale.x = 2;
+    tree.scale.y = 2;
+
+    tree.position.x = 150;
+    tree.position.z = -200
+    scene.add(tree);;
 
     for (let i = 0; i < objArr.length; i++) {
         floors.push(createBoxByText(objArr[i]));
@@ -53,7 +61,7 @@ function createTree(objArr) {
     for (let i = 0; i < floors.length; i++) {
         floors[i].originalPos = y + floors[i].height / 2;
         floors[i].position.y = container.offsetHeight / 3;
-        group.add(floors[i]);
+        tree.add(floors[i]);
         y += floors[i].height;
     }
 
@@ -76,6 +84,17 @@ function fallBox(obj) {
             clearInterval(inter);
         }
     }, 10);
+}
+
+function removeTree(obj){
+    let lim = container.offsetWidth / 2;
+    let inter = setInterval(function(){
+        obj.position.x += 4;
+        if(obj.position.x > lim){
+            scene.remove(obj);
+            clearInterval(inter);           
+        }
+    },20);
 }
 
 function createBoxByText(val) {
