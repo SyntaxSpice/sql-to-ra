@@ -242,6 +242,7 @@ function concatAllElems() {
     concatElems("τ", "right");
     concatElems("=", "both");
     concatElems("!=", "both");
+    concatElems("σ", "right");
 }
 
 function concatElems(elem, side) {

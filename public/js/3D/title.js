@@ -15,11 +15,8 @@ function arrayTo3DText(arr) {
     let group = new THREE.Group();
     for (let i = 0; i < arr.length; i++) {
         let word = arr[i],
-            obj = createText(word, 0xffffff, 140, 25),
-            geom = obj.geometry;
-        geom.computeBoundingBox();
-        obj.width = Math.abs(geom.boundingBox.max.x - geom.boundingBox.min.x);
-        obj.height = Math.abs(geom.boundingBox.max.y - geom.boundingBox.min.y);
+            obj = createText(word, 0xffffff, 140, 25);
+        
         obj.receiveShadow = true;
         obj.castShadow = true;
         group.add(obj);
@@ -105,6 +102,7 @@ function animatedCameraMoveTo(toPos, toRot) {
     }, 20);
     
     clearInterval(dropWordsInterval);
+    createSqlScene();
 }
 
 

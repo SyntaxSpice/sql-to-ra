@@ -1,16 +1,13 @@
 
 
 function createCubeGeom(obj) {
-	let {width, height, depth, texture} = obj;
+	let {width, height, depth, color=0xffffff} = obj;
 //	let material = new THREE.MeshPhongMaterial({transparent: true, map: texture, specular: 0xffffff});
-	let material = new THREE.MeshStandardMaterial({transparent: true, map: texture, roughness: .63});
-	texture.needsUpdate = true;
+	let material = new THREE.MeshStandardMaterial({transparent: true, roughness: .63, color: color});
+//	texture.needsUpdate = true;
 	let geometry = new THREE.CubeGeometry(width, height, depth, 1, 1, 1);
 	geometry.verticesNeedUpdate = true;
 	let mesh = new THREE.Mesh(geometry, material);
-	if(obj.secondaryProps) {
-		addPropsToObj(mesh, obj.secondaryProps);
-	} 	
 	return mesh;
 }
 
@@ -44,6 +41,11 @@ function createText(text, color=0x212121, size=15, height=3) {
 	});
 	let newText = new THREE.Mesh(textGeo, textMaterial);
     newText.castShadow = true;
+    
+    textGeo.computeBoundingBox();
+    newText.width = Math.abs(textGeo.boundingBox.max.x - textGeo.boundingBox.min.x);
+    newText.height = Math.abs(textGeo.boundingBox.max.y - textGeo.boundingBox.min.y);
+    
 	return newText;
 }
 

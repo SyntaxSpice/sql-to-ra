@@ -15,7 +15,7 @@
                 for (let key in data.data[0]) {
                     $scope.cnames.push(key);
                 }
-                console.log($scope.cnames);
+                createTree(arr);
             });
         };
 
@@ -49,7 +49,7 @@
         function showSqlSpace() {
             document.getElementById("sqlSpace").style.zIndex = 44;
             document.getElementById("sqlSpace").style.opacity = 1;
-            document.getElementById("title").style.display = "none";
+            document.getElementById("start").style.display = "none";
 
             window.removeEventListener("titleAnimated", showSqlSpace);
         }

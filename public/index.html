@@ -20,6 +20,7 @@
         <button id="start" type="button" ng-click="showWorkSpace()">Start</button>
     </div>
     <div id="sqlSpace">
+<!--
         <div id="tableExample" ng-controller="exampleCtrl">
             <div ng-repeat="table in tableExample">
                 <div class="br">
@@ -27,6 +28,7 @@
                 </div>
             </div>
         </div>
+-->
         <div id="app" ng-controller="mainCtrl">
             <textarea type="text" ng-model="rAData" id="sql" placeholder="SQL"></textarea>
             <div id="result"></div>
@@ -55,5 +57,6 @@
 <script src="./js/3D/init.js"></script>
 <script src="./js/3D/gui.js"></script>
 <script src="./js/3D/sound.js"></script>
+<script src="./js/3D/sqlScene.js"></script>
 
 </html>
