@@ -13,7 +13,8 @@ let light1;
 function createLight() {
 	scene.add(new THREE.AmbientLight(0xffffff, 1.2));
 
-	light = new THREE.SpotLight(0xffffff, .45);
+//	light = new THREE.SpotLight(0xffffff, .45);
+	light = new THREE.SpotLight(0xffffff, .37);
 	light.position.set(-250, 350, 150);
 	light.castShadow = true;
 	light.shadow = new THREE.LightShadow(new THREE.PerspectiveCamera(70, 1, 200, 2000));

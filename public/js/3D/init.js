@@ -4,7 +4,8 @@ animate();
 
 function init() {
 	scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0xFFFFFF, 0.0015);
+    scene.fog = new THREE.FogExp2(0xFFFFFF, -0.0005);
+//    scene.fog = new THREE.FogExp2(0xFFFFFF, 0.0015);
 	camera = new THREE.PerspectiveCamera(55, container.offsetWidth / container.offsetHeight, 0.1, 3000);
 	camera.position.copy(cameraPositions);
 	camera.rotation.set(-0.47710290662359933,0.534678803361967,0.25756073552844544);

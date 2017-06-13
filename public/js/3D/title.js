@@ -1,5 +1,5 @@
 //var titleText = ["SQL t", "o", " RA"];
-var titleText = ["Need for ", "speed"];
+var titleText = ["SQL"," t","o", " RA"];
 let title3DText;
 let charO;
 let cameraTo = {
@@ -41,7 +41,7 @@ window.addEventListener("fontLoaded", initTitle);
 
 function initTitle() {
     title3DText = arrayTo3DText(titleText);
-    charO = title3DText.children[1];
+    charO = title3DText.children[2];
     cameraTo.x = charO.position.x + charO.width / 2;
     cameraTo.y = charO.position.y + charO.height / 2;
     dropWords();
@@ -114,7 +114,8 @@ function createMirror() {
         clipBias: 0.003,
         textureWidth: window.innerWidth,
         textureHeight: window.innerHeight,
-        color: 0x889999
+        color: 0xb9b9b9
+//        color: 0x889999
 //        color: 0x7c7c7c
     });
     mirrorParams.mirrorMesh = new THREE.Mesh(new THREE.PlaneBufferGeometry(mirrorParams.width, mirrorParams.height), mirrorParams.mirror.material);
@@ -131,7 +132,7 @@ let mirrorParams = {
     height: container.offsetHeight
 };
 
-var speed = 2;
+var speed = 1.5;
 
 function moveWord(obj) {
     let step = speed;
@@ -141,11 +142,11 @@ function moveWord(obj) {
             clearInterval(inter);
             scene.remove(obj);
         }
-    }, 20);
+    }, 30);
 }
 
 let ffc = 0xffffff;
-let sfc = 0xffffff;
+let sfc = 0x555555;
 let dropWordsInterval;
 
 function dropWords() {
