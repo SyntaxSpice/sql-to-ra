@@ -1,4 +1,5 @@
-var titleText = ["SQL t", "o", " RA"];
+//var titleText = ["SQL t", "o", " RA"];
+var titleText = ["Need for ", "speed"];
 let title3DText;
 let charO;
 let cameraTo = {
@@ -102,6 +103,8 @@ function animatedCameraMoveTo(toPos, toRot) {
             window.dispatchEvent(event);
         }
     }, 20);
+    
+    clearInterval(dropWordsInterval);
 }
 
 
@@ -143,6 +146,7 @@ function moveWord(obj) {
 
 let ffc = 0xffffff;
 let sfc = 0xffffff;
+let dropWordsInterval;
 
 function dropWords() {
     let index = 0;
@@ -150,7 +154,7 @@ function dropWords() {
     let randomZ;
     let halfWidth = container.offsetWidth/2;
     
-    let inter = setInterval(function () {
+    dropWordsInterval = setInterval(function () {
         randomX = Math.floor(Math.random() * (halfWidth+halfWidth+1)-halfWidth);
         randomZ = Math.floor(Math.random() * (200+200+1)-200);
 //        let obj = createText(keywords[index], Math.random() * 0xffffff);

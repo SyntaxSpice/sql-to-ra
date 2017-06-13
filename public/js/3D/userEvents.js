@@ -11,9 +11,9 @@ function onDocumentMouseDown(event) {
 }
 
 function onDocumentMouseMove(event) {
-//	for (var func in mouseMoveFunctions) {
-//		mouseMoveFunctions[func](event);
-//	}
+	for (var func in mouseMoveFunctions) {
+		mouseMoveFunctions[func](event);
+	}
 //
 //	updateLightPosition();
 }
@@ -22,7 +22,7 @@ function onDocumentMouseUp(event) {
 	 
 
 	devModules.controls.noRotate = false;
-	document.removeEventListener('mousemove', onDocumentMouseMove, false);
+//	document.removeEventListener('mousemove', onDocumentMouseMove, false);
 	document.removeEventListener('mouseup', onDocumentMouseUp, false);
 }
 

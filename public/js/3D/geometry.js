@@ -39,7 +39,8 @@ function createText(text, color=0x212121, size=15, height=3) {
 	});
 	let textMaterial = new THREE.MeshStandardMaterial({
 		color: color,
-        roughness: .63
+//        roughness: .63,
+        metalness: .4
 	});
 	let newText = new THREE.Mesh(textGeo, textMaterial);
     newText.castShadow = true;
@@ -48,9 +49,13 @@ function createText(text, color=0x212121, size=15, height=3) {
 
 (function loadFont() {
 	var loader = new THREE.FontLoader(); 
-	loader.load('../js/3D/font/helvetiker_bold.typeface.json', function (newFont) {
+	loader.load('../js/3D/font/BigNoodleTooOblique_Italic.json', function (newFont) {
 		font = newFont;
         var event = new Event("fontLoaded");
         window.dispatchEvent(event);
 	});
 })();
+
+//Babalusa_Cut_Regular
+//https://gero3.github.io/facetype.js/
+//http://www.1001freefonts.com/sans-serif-fonts-7.php
