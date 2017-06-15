@@ -8,14 +8,23 @@
         $scope.submit = function () {
             $http.post('/sql', {
                 data: $scope.rAData
-            }).then(function (data) {
-                console.log(data.data);
-                $scope.table = data.data;
+            }).then(function (res) {
+                let data = res.data;
                 $scope.cnames = [];
-                for (let key in data.data[0]) {
-                    $scope.cnames.push(key);
+
+                if (data.data) {
+                    for (let key in data.data[0]) {
+                        $scope.cnames.push(key);
+                    }
+                    $scope.table = data.data;
+                    console.log($scope.table);
+                    createTree(treeArr);
                 }
-                createTree(treeArr);
+                else{
+                    $scope.table = null;
+                    $scope.cnames = null;
+                }
+
             });
         };
 
@@ -42,9 +51,9 @@
     app.controller('title', function ($scope) {
         $scope.showWorkSpace = function () {
             animatedCameraMoveTo(cameraTo);
-//            loadFont('../js/3D/font/TNR_Regular.json');
+            //            loadFont('../js/3D/font/TNR_Regular.json');
             loadFont('../js/3D/font/Arial_Regular.json');
-//            loadFont('../js/3D/font/helvetiker_bold.typeface.json');
+            //            loadFont('../js/3D/font/helvetiker_bold.typeface.json');
         }
 
         window.addEventListener("titleAnimated", showSqlSpace);

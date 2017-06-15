@@ -19,19 +19,16 @@ router.post('/sql', function (req, res) {
         res.send("Don't try change database!");
     } else {
         try {
-//            connection.connect();
             connection.query(req.body.data, function (err, rows, fields) {
                 if (!err) {
-                    console.log('The solution is: ', rows);
-                    res.send(rows);
+                    res.send({data:rows, status: 200});
                 } else {
-                    res.send("Your request is incorrect!");
+                    res.send({data: null, message: "Your request is incorrect!"});
                     console.log('Error while performing Query.');
                 }
             });
-//            connection.end();
         } catch (err) {
-            res.send("Your request is incorrect!");
+            res.send({data: null, "message": "Your request is incorrect!"});
             console.log(err);
         }
                 

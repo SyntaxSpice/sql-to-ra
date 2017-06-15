@@ -257,6 +257,8 @@ function removeColumns() {
         for (let j = 0; j < columns.length; j++) {
             if (arr[i] == columns[j]) {
                 arr.splice(i, 1);
+                i--;
+                continue;
             }
         }
     }
@@ -274,7 +276,7 @@ function concatAllElems() {
     concatElems("γ", "right");
     concatElems("τ", "right");
     concatElems("=", "both");
-    concatElems("!=", "both");
+    concatElems("≠", "both");
     concatElems("σ", "right");
     concatElems("and", "both");
     //    concatElems("U", "both");

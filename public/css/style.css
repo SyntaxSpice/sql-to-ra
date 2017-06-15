@@ -14,33 +14,36 @@ body {
 
 #app {
     position: relative;
-/*    text-align: center;*/
+    /*    text-align: center;*/
     display: block;
     top: 5%;
     margin-left: 5%;
-    width: 60%;
-/*    margin: auto;*/
+    width: 65%;
+    height: 230px;
+    /*    margin: auto;*/
 }
 
-#sqlSpace,#title {
+#sqlSpace,
+#title {
     width: 100%;
     height: 100%;
     position: absolute;
 }
 
-#sqlSpace{
+#sqlSpace {
     opacity: 0;
     transition: 1s;
 }
-#title{
+
+#title {
     z-index: 2;
 }
 
-#threeSpace{
+#threeSpace {
     width: 100%;
     height: 100%;
     position: absolute;
-/*    cursor: none;*/
+    /*    cursor: none;*/
 }
 
 #sql {
@@ -48,25 +51,48 @@ body {
     height: 50px;
     background-color: inherit;
     background-color: #222222;
-    box-shadow:  inset 0 0 3px 1px black;
+    box-shadow: inset 0 0 3px 1px black;
     border: 0px;
     color: white;
     padding: 2%;
     outline: none;
     resize: none;
     font-size: inherit;
+    float: left;
 }
 
 #result {
     position: relative;
-/*    margin: auto;*/
+    /*    margin: auto;*/
     width: 50%;
     height: 50px;
     background-color: #222222;
-    box-shadow:  inset 0 0 3px 1px black;
+    box-shadow: inset 0 0 3px 1px black;
     border: 0px;
     color: white;
     padding: 2%;
+    float: left;
+    top: 10px;
+}
+
+#resultTable {
+    position: relative;
+    margin: auto;
+    left: 10px;
+/*    width: 50%;*/
+    padding: 0;
+    color: #000000;
+    font-size: 18px;
+    text-align: center;
+/*    border: 1px solid #000000;*/
+    margin-bottom: 10px;
+    /*    display: none;*/
+    height: 100%;
+    overflow-y: auto;
+}
+
+#sql, #resultTable{
+    display: inline-block;
 }
 
 #submit {
@@ -77,59 +103,35 @@ body {
     background: linear-gradient(to right, #000 0%, #000 50%, rgba(255, 255, 255, 0) 51%, rgba(255, 255, 255, 0) 100%);
     background-size: 220% 200%;
     background-position: 100%;
-     background-repeat: no-repeat;
+    background-repeat: no-repeat;
     border: 1px solid #000000;
     color: #000000;
     font-size: 18px;
     cursor: pointer;
     transition: .5s;
+    float: left;
+    display: block;
 }
 
 #submit:hover {
-     background-position: 0%;
+    background-position: 0%;
     color: white;
-}
-
-#resultTable {
-    position: relative;
-    margin: auto;
-    top: 10px;
-    width: 50%;
-    padding: 0;
-    color: #000000;
-    font-size: 18px;
-    text-align: center;
-    border: 1px solid #000000;
-    margin-bottom: 10px;
-    display: none;
 }
 
 td,
 tr {
-    border: 1px solid #000000;
+    border: 0px solid #000000;
+    min-width: 50px;
+    padding: 13px;
 }
 
-#tableExample {
-    /*    width: 100px;*/
-    position: absolute;
-    float: left;
-    left: 50px;
-    top: 10%;
+tr{
+    background-color: #2c2c2c;
+    color: white;
 }
 
-.tr {
-    /*    border: 1px solid white;*/
-    /*    color: #0093ff;*/
-    font-size: 18px;
-}
-
-.br {
-    padding: 15px;
-    margin-bottom: 20px;
-    /*    border-bottom: 1px solid #0093ff;*/
-    box-shadow: 0 0 3px .1px black;
-    border: 1px solid black;
-    border-left: 5px solid #10e289;
+.th{
+    color: #0088ff;
 }
 
 #start {
@@ -157,8 +159,3 @@ tr {
     background-position: 0%;
     color: white;
 }
-
-.dg,.ac{
-    z-index: 10!important;
-}
-
