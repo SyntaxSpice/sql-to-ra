@@ -15,7 +15,8 @@ let conformity = {
     "order": "τ",
     "group": "γ",
     "by": "",
-    "union": "∪",
+    //    "union": "∪",
+    "union": "U",
     "from": "from",
     "inner": "⋈",
     "left": "⟕",
@@ -27,7 +28,22 @@ let conformity = {
     ")": ")",
     "on": "on",
     ",": "",
-    " ": ""
+    " ": "",
+    "!=": "≠"
+};
+
+let priority = {
+    "π": 3,
+    "σ": 1,
+    "τ": 5,
+    "γ": 5,
+    "U": 6,
+    "inner": 2,
+    "left": 2,
+    "right": 2,
+    "ρ": 4,
+    "R": 0,
+    "S": 0
 };
 
 let columns = ["a", "b", "c"];
@@ -36,6 +52,21 @@ let tables = ["r", "t", "s"];
 
 let arr;
 let resultStr = "";
+let treeArr = [];
+
+function setPriority() {
+    treeArr = [];
+    for (let i = 0; i < arr.length; i++) {
+        for (let key in priority) {
+            if (~arr[i].indexOf(key)) {
+                treeArr.push({
+                    text: arr[i],
+                    index: priority[key]
+                });
+            }
+        }
+    }
+}
 
 function parseString(val) {
     arr = [];
@@ -63,6 +94,7 @@ function parseString(val) {
     removeColumns();
     findBrackets();
     concatStr();
+    setPriority();
 
     console.log(arr);
     return resultStr;
@@ -147,24 +179,24 @@ function swapIfAsExist() {
                 for (let j = i; j > 0; j--) {
                     if (~arr[j].indexOf("(")) {
                         arr.splice(j, 0, `${arr[i]} ${arr[i+1]}←`);
-                        arr.splice(i+1, 2);
+                        arr.splice(i + 1, 2);
                     }
                 }
             } else {
                 arr[i - 1] = `${arr[i]} ${arr[i+1]}←${arr[i-1]}`;
                 arr.splice(i, 2);
             }
-            
+
         }
     }
 }
 
-function swapOn(){
-    for(let i = 0; i<arr.length; i++){
-        if(arr[i] == "on"){
-            arr[i] = arr[i-1];
-            arr[i-1] = arr[i+1];
-            arr.splice(i+1,1);
+function swapOn() {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] == "on") {
+            arr[i] = arr[i - 1];
+            arr[i - 1] = arr[i + 1];
+            arr.splice(i + 1, 1);
         }
     }
 }
@@ -199,8 +231,9 @@ function replaceSelect() {
 function removeSameAs() {
     for (let i = arr.length - 1; i > 0; i--) {
         if (~arr[i].indexOf("ρ") && arr[i - 1] && ~arr[i - 1].indexOf("ρ")) {
-            arr[i - 1] += ",";
-            arr[i] = arr[i].substr(1, arr[i].length).trim();
+            arr[i - 1] += ", " + arr[i].substr(1, arr[i].length).trim();
+            arr.splice(i, 1);
+            //            arr[i] = arr[i].substr(1, arr[i].length).trim();
         }
     }
 }
@@ -243,20 +276,30 @@ function concatAllElems() {
     concatElems("=", "both");
     concatElems("!=", "both");
     concatElems("σ", "right");
+    concatElems("and", "both");
+    //    concatElems("U", "both");
 }
 
 function concatElems(elem, side) {
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i] == elem) {
+        if (~arr[i].indexOf(elem)) {
             if (side == "both") {
-                arr[i - 1] += ` ${arr[i]} ${arr[i+1]}`;
-                arr.splice(i, 2);
+                arr[i - 1] += ` ${arr[i]}`;
+                if (arr[i + 1]) {
+                    arr[i - 1] += ` ${arr[i+1]}`;
+                    arr.splice(i, 2);
+                    continue;
+                }
+                arr.splice(i, 1);
             } else if (side == "left") {
                 arr[i - 1] += ` ${arr[i]}`;
                 arr.splice(i, 1);
             } else {
-                arr[i] += ` ${arr[i+1]}`;
-                arr.splice(i + 1, 1);
+                if (arr[i + 1]) {
+                    arr[i] += ` ${arr[i+1]}`;
+                    arr.splice(i + 1, 1);
+                }
+
             }
         }
     }

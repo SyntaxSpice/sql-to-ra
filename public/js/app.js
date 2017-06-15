@@ -15,7 +15,7 @@
                 for (let key in data.data[0]) {
                     $scope.cnames.push(key);
                 }
-                createTree(arr);
+                createTree(treeArr);
             });
         };
 
@@ -42,6 +42,9 @@
     app.controller('title', function ($scope) {
         $scope.showWorkSpace = function () {
             animatedCameraMoveTo(cameraTo);
+//            loadFont('../js/3D/font/TNR_Regular.json');
+            loadFont('../js/3D/font/Arial_Regular.json');
+//            loadFont('../js/3D/font/helvetiker_bold.typeface.json');
         }
 
         window.addEventListener("titleAnimated", showSqlSpace);

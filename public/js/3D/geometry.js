@@ -49,14 +49,16 @@ function createText(text, color=0x212121, size=15, height=3) {
 	return newText;
 }
 
-(function loadFont() {
+function loadFont(url) {
 	var loader = new THREE.FontLoader(); 
-	loader.load('../js/3D/font/BigNoodleTooOblique_Italic.json', function (newFont) {
+	loader.load(url, function (newFont) {
 		font = newFont;
         var event = new Event("fontLoaded");
         window.dispatchEvent(event);
 	});
-})();
+};
+
+loadFont('../js/3D/font/BigNoodleTooOblique_Italic.json');
 
 //Babalusa_Cut_Regular
 //https://gero3.github.io/facetype.js/
