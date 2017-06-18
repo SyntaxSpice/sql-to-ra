@@ -4,7 +4,7 @@
 //select * from (select * from S union select * from T) as R where d < 150
 
 let operators = [
-    "select ", "where ", "order ", "group ", "by ", "union ", "from ", "inner ", "left ", "right ", "join ", "having", " as ", "(", ")", " on ", ",", "distinct ", " "
+    "select ", "where ", "order ", "group ", "by ", "union ", "from ", "inner ", "left ", "right ", "join ", "having", " as ", "(", ")", " on ", ",", "distinct ", " ", "=", ">", "<", "!="
 ];
 
 let conformity = {
@@ -277,8 +277,9 @@ function concatAllElems() {
     concatElems("τ", "right");
     concatElems("=", "both");
     concatElems("≠", "both");
-    concatElems("σ", "right");
     concatElems("and", "both");
+    concatElems("σ", "right");
+    
     //    concatElems("U", "both");
 }
 
