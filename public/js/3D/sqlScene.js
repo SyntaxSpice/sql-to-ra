@@ -63,8 +63,10 @@ function createTree(objArr) {
     let floorPosX = 0;
     let y = 0;
     let floorIndex = 0;
+    let currentIndex = 0;
     for (let i = 0; i < floors.length; i++) {
-        if(floors[i].floor > floorIndex){
+        if(floors[i].floor > currentIndex){
+            currentIndex = floors[i].floor;
             floorIndex++;
         }
         y = floorHeight * floorIndex;
@@ -74,8 +76,15 @@ function createTree(objArr) {
         floors[i].position.x = floorPosX;
         
         if(floors[i-1] && floors[i].floor == floors[i-1].floor){
-            floors[i].position.x += floors[i].width+3;
-            floorPosX += floors[i].width/2 + 1.5;
+            floors[i].position.x += 20;
+//            floors[i].position.x += floors[i].width+3;
+//            floorPosX += floors[i].width/2 + 1.5;
+        }
+        else if(floors[i+1] && floors[i].floor == floors[i+1].floor){
+            floors[i].position.x = 0;
+        }
+        else if(floors[i-1] && floors[i-2] && floors[i-1].floor == floors[i-2].floor){        
+            floors[i].position.x += 10;
         }
         
         tree.add(floors[i]);
