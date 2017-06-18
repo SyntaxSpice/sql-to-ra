@@ -46,7 +46,7 @@ let priority = {
     "S": 0
 };
 
-let columns = ["a", "b", "c", "r.a", "r.b", "r.c", "s.c", "s.d"];
+let columns = ["a", "b", "c", "d", "r.a", "r.b", "r.c", "s.c", "s.d"];
 let tables = ["r", "t", "s"];
 
 
