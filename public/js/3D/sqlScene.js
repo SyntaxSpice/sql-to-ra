@@ -83,7 +83,7 @@ function createTree(objArr) {
         else if(floors[i+1] && floors[i].floor == floors[i+1].floor){
             floors[i].position.x = 0;
         }
-        else if(floors[i-1] && floors[i-2] && floors[i-1].floor == floors[i-2].floor){        
+        else if(floors[i-1] && floors[i-2] && floors[i-1].floor == floors[i-2].floor || floors[i-1] && floors[i-1].position.x == 10){        
             floors[i].position.x += 10;
         }
         

@@ -33,20 +33,39 @@ let conformity = {
 };
 
 let priority = {
-    "π": 3,
-    "σ": 1,
-    "τ": 5,
-    "γ": 5,
-    "U": 6,
-    "inner": 2,
-    "left": 2,
-    "right": 2,
-    "ρ": 4,
+    "all": 2,
+    "in": 2,
+    "exists": 2,
+    "any": 2,
+    "π": 4,
+    "σ": 2,
+    "X": 1,
+    "τ": 6,
+    "γ": 6,
+    "U": 7,
+    "⋈": 3,
+    "⟕": 3,
+    "⟖": 3,
+    "ρ": 5,
     "R": 0,
     "S": 0
 };
 
+let originalC = ["a", "b", "c", "d", "*"];
 let columns = ["a", "b", "c", "d", "r.a", "r.b", "r.c", "s.c", "s.d"];
+let mathFunc = ["sum", "avg", "max", "min"];
+
+for(let i = 0; i < originalC.length; i++){
+     columns.push(`count(${originalC[i]})`);
+}
+
+for(let i = 0; i < mathFunc.length; i++){
+    columns.push(`${mathFunc[i]}(a)`);
+    columns.push(`${mathFunc[i]}(r.a)`);
+    columns.push(`${mathFunc[i]}(d)`);
+    columns.push(`${mathFunc[i]}(r.d)`);
+}
+
 let tables = ["r", "t", "s"];
 
 
@@ -63,6 +82,21 @@ function setPriority() {
                     text: arr[i],
                     index: priority[key]
                 });
+                break;
+            }
+        }
+    }
+}
+
+function concatColumnAndMathFunc(){
+    for(let i = 0; i<arr.length; i++){
+        for(let j = 0; j<columns.length; j++){
+            if(arr[i+1] && arr[i+2] && arr[i+3]){
+                let str = arr[i]+arr[i+1]+arr[i+2]+arr[i+3];
+                if(str == columns[j]){
+                    arr[i] = str;
+                    arr.splice(i+1, 3);
+                }
             }
         }
     }
@@ -78,10 +112,13 @@ function parseString(val) {
     remmoveSelectAll();
 
     removeEmptyStr();
+    concatColumnAndMathFunc();
     replaceSelect();
     removeFrom();
     swapIfAsExist();
+    concatAllElems();
     swapOn();
+    concatJoin();
 
     removeEmptyStr();
     //    removeColumns();
@@ -90,9 +127,11 @@ function parseString(val) {
 
     returnUpperCase();
     //    subColumnNames();
-    concatAllElems();
+    
     removeColumns();
     findBrackets();
+    concatWhereSubOperators();
+    checkMultiplication();
     concatStr();
     setPriority();
 
@@ -117,6 +156,16 @@ function splitStirng(str) {
     }
 }
 
+function checkMultiplication(){
+    for(let i = 0; i<arr.length; i++){
+        if(arr[i] == "R" || arr[i] == "S"){
+            if(arr[i+1] == "R" || arr[i+1] == "S"){
+                arr.splice(i + 1, 0, "X");
+            }
+        }
+    }
+}
+
 function changeOperators() {
     for (let i = 0; i < arr.length; i++) {
         let itemArr = arr[i].split(" ");
@@ -132,7 +181,7 @@ function changeOperators() {
 function remmoveSelectAll() {
     for (let i = 0; i < arr.length; i++) {
         let index = arr.indexOf("*");
-        if (~index) {
+        if (~index && arr[index+1] != ")" && arr[index-1] != "(") {
             arr.splice(index - 1, 2);
             i--;
         }
@@ -162,7 +211,7 @@ function findBrackets() {
         let close = arr.indexOf(")");
         let newStr = "";
         for (let j = open; j <= close; j++) {
-            newStr += arr[j];
+            newStr += `${arr[j]} `;
         }
         if (~open && ~close) {
             arr[open] = newStr;
@@ -175,15 +224,16 @@ function findBrackets() {
 function swapIfAsExist() {
     for (let i = 0; i < arr.length; i++) {
         if (~arr[i].indexOf("ρ")) {
-            if (~arr[i - 1].indexOf(")")) {
-                for (let j = i; j > 0; j--) {
+            if (~arr[i - 1].indexOf(")") && columns.indexOf(arr[i - 1]) == -1) {
+                for (let j = i; j >= 0; j--) {
                     if (~arr[j].indexOf("(")) {
                         arr.splice(j, 0, `${arr[i]} ${arr[i+1]}←`);
                         arr.splice(i + 1, 2);
                     }
                 }
             } else {
-                arr[i - 1] = `${arr[i]} ${arr[i+1]}←${arr[i-1]}`;
+                let arrow = tables.indexOf(arr[i-1]) == -1 ? "←" : " ";
+                arr[i - 1] = `${arr[i]} ${arr[i+1]}${arrow}${arr[i-1]}`;
                 arr.splice(i, 2);
             }
 
@@ -283,10 +333,23 @@ function concatAllElems() {
     //    concatElems("U", "both");
 }
 
+function concatJoin(){
+    concatElems("⋈", "right");
+    concatElems("⟕", "right");
+    concatElems("⟖", "right");
+}
+
+function concatWhereSubOperators(){
+    concatElems("any", "right");
+    concatElems("all", "right");
+    concatElems("in", "both");
+    concatElems("exists", "right");
+}
+
 function concatElems(elem, side) {
     for (let i = 0; i < arr.length; i++) {
         if (~arr[i].indexOf(elem)) {
-            if (side == "both") {
+            if (side == "both" && arr[i - 1] && arr[i + 1]) {
                 arr[i - 1] += ` ${arr[i]}`;
                 if (arr[i + 1]) {
                     arr[i - 1] += ` ${arr[i+1]}`;
@@ -297,7 +360,7 @@ function concatElems(elem, side) {
             } else if (side == "left") {
                 arr[i - 1] += ` ${arr[i]}`;
                 arr.splice(i, 1);
-            } else {
+            } else if (side == "right"){
                 if (arr[i + 1]) {
                     arr[i] += ` ${arr[i+1]}`;
                     arr.splice(i + 1, 1);
