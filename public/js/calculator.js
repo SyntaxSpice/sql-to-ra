@@ -344,6 +344,8 @@ function concatWhereSubOperators(){
     concatElems("all", "right");
     concatElems("in", "both");
     concatElems("exists", "right");
+    concatElems("not", "both");
+    concatElems("not", "left");
 }
 
 function concatElems(elem, side) {
